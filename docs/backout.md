@@ -7,7 +7,7 @@
 - **systemd (API)**
   - /etc/systemd/system/rollinginsights-api.service
 - **env (מחוץ לריפו)**
-  - /srv/apps/empirelogic/env/api.env   ← קיימת תבנית: `env/api.env.template`
+  - /srv/apps/empirelogic/env/api.env   ← יש תבנית ב־repo: env/api.env.template
 
 ## שחזור Nginx (על השרת)
 sudo cp ~/infra-sync/nginx/sites/empirelogicapp.com /etc/nginx/sites-available/empirelogicapp.com
