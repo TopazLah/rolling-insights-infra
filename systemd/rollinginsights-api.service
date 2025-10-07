@@ -1,0 +1,23 @@
+[Unit]
+Description=RollingInsights API
+After=network.target
+
+[Service]
+WorkingDirectory=/srv/apps/empirelogic/apps/api
+ExecStart=/home/deploy/dotnet/dotnet /srv/apps/empirelogic/apps/api/RollingInsightsApi.dll
+Restart=always
+RestartSec=3
+
+# קבצי סביבה קיימים אצלך
+EnvironmentFile=/srv/apps/empirelogic/env/api.env
+
+# ברירות מחדל בטוחות, אם לא הוגדרו ב-api.env
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://0.0.0.0:5080
+
+# לוגים
+StandardOutput=append:/srv/apps/empirelogic/logs/api.out.log
+StandardError=append:/srv/apps/empirelogic/logs/api.err.log
+
+[Install]
+WantedBy=multi-user.target
