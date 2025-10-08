@@ -1,1 +1,7 @@
 .sops.yaml.bak.*
+
+# ignore secrets and temp files
+*.enc
+*.bak
+*.tmp
+*.log

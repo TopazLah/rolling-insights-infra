@@ -1,0 +1,16 @@
+
+services:
+  api:
+    volumes:
+      - /srv/apps/empirelogic/data-protection:/root/.aspnet/DataProtection-Keys
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file:
+      - /srv/apps/empirelogic/env/api.env
+    # אם יש לך אימג' פרוס מוכן ב-Registry, השאר כך.
+    # אם תרצה לבנות מהמונורפו, נחליף ל-build בהמשך.
+    image: ghcr.io/topazlah/rolling-insights-api:20251008-090559
+    restart: unless-stopped
+    ports:
+      - "5080:5080"
+    # משתני סביבה שיגיעו מה־exec-env של sops

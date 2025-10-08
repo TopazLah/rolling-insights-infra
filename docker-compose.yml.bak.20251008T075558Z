@@ -1,0 +1,37 @@
+
+services:
+  api:
+    # אם יש לך אימג' פרוס מוכן ב-Registry, השאר כך.
+    # אם תרצה לבנות מהמונורפו, נחליף ל-build בהמשך.
+    image: ghcr.io/topazlah/rolling-insights-api:20251008-1023
+    restart: unless-stopped
+    ports:
+      - "5080:5080"
+    # משתני סביבה שיגיעו מה־exec-env של sops
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+      - ConnectionStrings__DefaultConnection=${ConnectionStrings__DefaultConnection}
+      - JwtSettings__SecretKey=${JwtSettings__SecretKey}
+      - JwtSettings__Issuer=${JwtSettings__Issuer}
+      - JwtSettings__Audience=${JwtSettings__Audience}
+      - JwtSettings__ExpirationMinutes=${JwtSettings__ExpirationMinutes}
+      - Smtp__Host=${Smtp__Host}
+      - Smtp__Port=${Smtp__Port}
+      - Smtp__EnableSsl=${Smtp__EnableSsl}
+      - Smtp__Username=${Smtp__Username}
+      - Smtp__Password=${Smtp__Password}
+      - Smtp__FromEmail=${Smtp__FromEmail}
+      - Smtp__FromName=${Smtp__FromName}
+      - Firebase__ProjectId=${Firebase__ProjectId}
+      - Cors__AllowedOrigins__0=${Cors__AllowedOrigins__0}
+      - WatcherBridge__BaseUrl=${WatcherBridge__BaseUrl}
+      - WatcherBridge__ApiKey=${WatcherBridge__ApiKey}
+      - WatcherBridge__TimeoutSeconds=${WatcherBridge__TimeoutSeconds}
+      - WatcherBridge__RetryCount=${WatcherBridge__RetryCount}
+      - WatcherBridge__UseFake=${WatcherBridge__UseFake}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:5080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
