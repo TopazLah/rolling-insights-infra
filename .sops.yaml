@@ -1,4 +1,4 @@
 creation_rules:
   - path_regex: 'env/.*\.enc$'
     encrypted_regex: '^(ConnectionStrings__DefaultConnection|JwtSettings__SecretKey|Smtp__Password|.*Password.*|.*Secret.*)$'
-    age: "age16wmvene7apu27cfzx2wq05f7rq55w0ss2xrwwujevplzntfqzpvqmmgylt"
+    age: "age16wmvene7apu27cfzx2wq05f7rq55w0ss2xrwwujevplzntfqzpvqmmgylt,age12u6srq9a24jgqyu5wf0jj5ckxmvjkw4xdm0dzgxtrlupdcvpnqaqgkm5l2"
